@@ -1,0 +1,37 @@
+<% layout("/layouts/boilerplate") %>
+<body class="main-body">
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <div class="col-12">
+        <h4>Explore</h4>
+      </div>
+    </div>
+    <div class="row">
+      <% if (products.length > 0) { %> <% products.forEach(product => { %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img
+            src="<%= product.imageUrl %>"
+            class="card-img-top"
+            alt="<%= product.name %>"
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><%= product.description %></p>
+            <p class="card-text">
+              <strong>Price:</strong> $<%= product.price %>
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="/products/<%=product._id%>" class="btn btn-success">View Details</a>
+          </div>
+        </div>
+      </div>
+      <% }) %> <% } else { %>
+      <div class="col-12">
+        <p class="text-center display-5">No products found!</p>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</body>

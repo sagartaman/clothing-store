@@ -1,0 +1,92 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="row mt-3">
+    <div class="col-6 offset-3">
+      <h4>Edit Your items:</h4>
+      <form
+        method="post"
+        action="/products/<%=product._id%>?_method=PUT"
+        novalidate
+        class="needs-validation"
+      >
+        <div class="mb-2">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            name="product[name]"
+            id="name"
+            placeholder="enter brand name"
+            value="<%= product.name%>"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-2">
+          <label for="imageUrl" class="form-label">ImageUrl</label>
+          <input
+            type="text"
+            name="product[imageUrl]"
+            id="imageUrl"
+            value="<%= product.imageUrl%>"
+            placeholder="enter brand image"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-2">
+          <label for="desc">Description</label>
+          <textarea
+            name="product[description]"
+            id="desc"
+            placeholder="enter brand description"
+            class="form-control"
+            required
+          >
+<%= product.name%></textarea
+          >
+        </div>
+
+        <div class="mb-2">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            name="product[price]"
+            id="price"
+            value="<%= product.price%>"
+            placeholder="enter brand price"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="size" class="form-label">Size</label>
+            <input
+              type="text"
+              name="product[sizes]"
+              id="size"
+              value="<%= product.sizes%>"
+              placeholder="enter size"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="colors" class="form-label">Color</label>
+            <input
+              type="text"
+              name="product[colors]"
+              id="colors"
+              value="<%= product.colors%>"
+              placeholder="enter color"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success mt-3 mb-5">Edit</button>
+      </form>
+    </div>
+  </div>
+</body>

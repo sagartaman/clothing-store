@@ -1,0 +1,125 @@
+<% layout("/layouts/boilerplate") %>
+</head>
+<body class="main-body">
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <!-- Product Details Card -->
+            <div class="col-md-8 col-lg-6 text-center">
+                <div class="card shadow-sm border-0 show-card">
+                    <!-- Image with Border Radius -->
+                    <img src="<%=product.imageUrl%>" class="card-img-top img-fluid rounded-top" alt="<%=product.name%>" style="max-height: 400px; object-fit: cover;">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3"><%=product.name%></h3>
+                        <p class="card-text text-muted mb-3"><%=product.description%></p>
+                        <p class="card-text"><strong>Price:</strong> &#8377; <%=product.price.toLocaleString("en-IN")%>/piece</p>
+                        <p class="card-text"><strong>Sizes:</strong> <%=product.sizes%></p>
+                        <p class="card-text"><strong>Colors:</strong> <%=product.colors%></p>
+                    </div>
+                </div>
+
+                <!-- Edit and Delete Buttons in the Same Line -->
+                <div class="d-flex gap-3 mt-4 justify-content-center">
+                    <a href="/products/<%=product._id%>/edit" class="btn btn-success btn-lg flex-grow-1">
+                        <i class="fas fa-edit me-2"></i> Edit
+                    </a>
+                    <form action="/products/<%=product._id%>/?_method=DELETE" method="post" class="flex-grow-1">
+                        <button type="submit" class="btn btn-danger btn-lg w-100">
+                            <i class="fas fa-trash me-2 mb-2"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-6 offset-3">
+            <hr>
+            <h4>write a review</h4>
+            <form action="/products/<%=product.id%>/reviews" method="post" novalidate class="needs-validation">
+                <div class="mb-2 mt-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <fieldset class="starability-slot">
+                      <input
+                        type="radio"
+                        id="no-rate"
+                        class="input-no-rate"
+                        name="review[rating]"
+                        value="1"
+                        checked
+                        aria-label="No rating."
+                      />
+                      <input
+                        type="radio"
+                        id="first-rate1"
+                        name="review[rating]"
+                        value="1"
+                      />
+                      <label for="first-rate1" title="Terrible">1 star</label>
+                      <input
+                        type="radio"
+                        id="first-rate2"
+                        name="review[rating]"
+                        value="2"
+                      />
+                      <label for="first-rate2" title="Not good">2 stars</label>
+                      <input
+                        type="radio"
+                        id="first-rate3"
+                        name="review[rating]"
+                        value="3"
+                      />
+                      <label for="first-rate3" title="Average">3 stars</label>
+                      <input
+                        type="radio"
+                        id="first-rate4"
+                        name="review[rating]"
+                        value="4"
+                      />
+                      <label for="first-rate4" title="Very good">4 stars</label>
+                      <input
+                        type="radio"
+                        id="first-rate5"
+                        name="review[rating]"
+                        value="5"
+                      />
+                      <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                  </div>
+          
+                  <div class="mb-3">
+                    <label for="comment">Comment</label>
+                    <textarea
+                      name="review[comment]"
+                      id="comment"
+                      cols="30"
+                      rows="6"
+                      class="form-control"
+                      required
+                    ></textarea>
+                    <div class="invalid-feedback">Please write a comment</div>
+                  </div>
+                  <button class="btn btn-dark mb-3">submit</button>
+                </form>
+        </div>
+        <div class="col-md-8 col-lg-6 offset-3">
+            <hr>
+            <h4>reviews</h4>
+            <div class="row">
+                <%for(review of product.reviews){%>
+                    <div class="card col-5 ms-2 mb-2" style="width: 20;">
+                        <div class="card-body">
+                            <p
+                            class="starability-result card-text"
+                            data-rating="<%=review.rating%>"
+                          >
+                            Rated: 3 stars
+                          </p>
+                          <p class="card-text"><%=review.comment%></p>                                                  
+                        <form action="/products/<%=product._id%>/review/<%=review._id%>/?_method=DELETE" method="post">
+                        <button class="btn btn-sm btn-danger mb-3">Delete</button>
+                        </form>
+                        </div>
+                      </div>
+                    <%}%>
+            </div>
+        </div>
+    </div>
+</body>
