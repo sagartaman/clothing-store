@@ -19,9 +19,11 @@ const productRouter= require("./routes/products.js");
 const userRouter= require("./routes/users.js");
 const searchRouter= require("./routes/search.js");
 const reviewRouter= require("./routes/review.js");
+const cartRouter= require("./routes/cart.js");
 
 
 const mongoose = require('mongoose');
+const ATLASDB_URL=process.env.ATLASDB_URL;
 main().then(() => {
     console.log("connected to the database");
 }).catch((err) => {
@@ -29,7 +31,7 @@ main().then(() => {
 });
 
 async function main() {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(ATLASDB_URL);
 }
 
 // Middlewares
@@ -80,6 +82,7 @@ app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
     res.locals.currUser = req.user;
+    res.locals.cart = req.session.cart || { items: [] };
     next();
 })
 
@@ -87,6 +90,9 @@ app.use("/",productRouter);
 app.use("/",userRouter);
 app.use("/",reviewRouter);
 app.use("/",searchRouter);
+app.use("/cart",cartRouter);
+
+
 
 app.listen(PORT, () => {
     console.log(`server is listening to the URL: http://localhost:${PORT}/products`);

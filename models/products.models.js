@@ -24,7 +24,11 @@ const productSchema = new mongoose.Schema({
       type:mongoose.Schema.Types.ObjectId,
       ref:"Review",
     }
-  ]
+  ],
+  owner:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"User",
+},
 });
 
 productSchema.post("findOneAndDelete",async(product)=>{

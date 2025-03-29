@@ -1,25 +1,92 @@
 <% layout("/layouts/boilerplate") %>
 <body class="main-body">
-<div class="container-fluid mt-4">
+  <!-- <style>
+    #filters {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .filter {
+      text-align: center;
+      margin-right: 2rem;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .filter:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .filter p {
+      font-size: 0.7rem;
+    }
+  </style>
+
+  <div id="filters">
+    <div class="filter">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-glasses"></i></div>
+      <p>Fashoin</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-house-user"></i></div>
+      <p>Home & Kitchen</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-person"></i></div>
+      <p>Beauty & Care</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-guitar"></i></div>
+      <p>Musical Instruments</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-baby-carriage"></i></div>
+      <p>Baby Essentials</p>
+    </div>
+  </div> -->
+
+  <div class="container-fluid mt-2">
+    <div class="row d-flex flex-row justify-content-end">
+      <div class="col-2">
+        <form id="sort-form">
+          <select class="form-select" aria-label="Sort by price">
+            <option selected>sort by price</option>
+            <option value="low-to-high">price low to high</option>
+            <option value="high-to-low">price high to low</option>
+          </select>
+        </form>
+      </div>
+    </div>
+
     <div class="row">
-        <div class="col-12">
-            <h4>Explore</h4>
-        </div>
+      <div class="col-12">
+        <h4>Explore</h4>
+      </div>
     </div>
     <div class="row">
-        <% for(product of products) { %>
-            <div class="col-md-4 col-sm-6 col-12 mb-4">
-                <a href="/products/<%=product._id%>" class="text-decoration-none">
-                    <div class="card h-100">
-                        <img src="<%=product.imageUrl%>" class="card-img-top" alt="loading">
-                        <div class="card-body">
-                            <p class="card-text fw-bold"><%=product.name%></p>
-                            <p class="card-text"><strong>&#8377;</strong> <%=product.price.toLocaleString("en-IN")%>/piece</p>
-                        </div>
-                    </div>
-                </a>
+      <% for(product of products) { %>
+      <div class="col-md-4 col-sm-6 col-12 mb-4">
+        <a href="/products/<%=product._id%>" class="text-decoration-none">
+          <div class="card h-100">
+            <img
+              src="<%=product.imageUrl%>"
+              class="card-img-top object-fit-cover"
+              alt="loading"
+            />
+            <div class="card-body">
+              <p class="card-text fw-bold"><%=product.name%></p>
+              <p class="card-text">
+                <strong>&#8377;</strong>
+                <%=product.price.toLocaleString("en-IN")%>/piece
+              </p>
             </div>
-        <% } %>
+          </div>
+        </a>
+      </div>
+      <% } %>
     </div>
-</div>
+  </div>
 </body>
