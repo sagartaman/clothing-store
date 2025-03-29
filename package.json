@@ -1,6 +1,6 @@
 {
-  "engine":{
-    "node":"22.13.1"
+  "engine": {
+    "node": "22.13.1"
   },
   "name": "cloth-store",
   "version": "1.0.0",
@@ -12,7 +12,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A web application where users can list, view, and review clothing items. Users can upload images, add descriptions, and specify price, size, and color.",
   "dependencies": {
     "connect-flash": "^0.1.1",
     "connect-mongo": "^5.1.0",
@@ -29,5 +29,13 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagartaman/clothing-store.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sagartaman/clothing-store/issues"
+  },
+  "homepage": "https://github.com/sagartaman/clothing-store#readme"
 }
