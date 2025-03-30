@@ -45,7 +45,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 const store= MongoStore.create({
-    mongoUrl:process.env.MONGODB_URI,
+    mongoUrl:process.env.ATLASDB_URL,
     crypto:{
         secret:process.env.SESSION_SECRET,
     },
